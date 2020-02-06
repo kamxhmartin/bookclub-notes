@@ -1,0 +1,103 @@
+= C# In Depth
+
+== Chapter 1: Survival of the Sharpest
+
+=== An evolving language
+. Type System:
+- Statically typed
+- Better for scale
+- Generics are pretty cool
+. Concise Code:
+- Construction and initialization
+- Object and collection
+. String handling
+- nameOf
+- interpolated string literals
+. Data Access and LINQ
+- Data transformations with functional thinking
+. Asynch
+. Efficiency and complexity
+- CLR is much better than JIT
+- Performance is better
+. Speed of evolution
+- Minor versioning makes getting fixes and new features faster
+
+=== An evolving platform
+. Expansive platform
+. Developer friendly
+. Unity for game development
+
+=== Community
+- Enterprise -> Community
+- You can run C# anywhere
+
+=== Book
+. Mixed level coverage
+- Books are harder to update than a language
+. Noda Time https://github.com/nodatime/nodatime
+. Terminology choices
+
+== Chapter 2: C# 2
+
+=== Generics
+
+==== Collections before generics
+- Arrays: Statically typed
+- Object-based collections: Statically typed
+- Specialized collections
+- Need to know size before adding values
+
+==== Generics save the day
+. List<T> 
+- Doesn't need to know size
+- Uses t types
+- Use with any element type without worrying about generating code and managing result
+. Arity of Generic Types
+- Declaration is the number of type parameters
+
+==== What can be generic
+- Fields
+- Properties
+- Indexers
+- Constructors
+- Events
+- Finalizers
+
+==== Type inference for type arguments to methods
+- Tuples allow type inference to be used where stype arguments have to be explicit
+- Type inference intersects with iheritance, conversions, option params
+- Sometimes it works perfectly
+- Sometimes you need to create a new generic to make it work
+- If it fails at compile time sometimes you can fix it with a cast
+- Or explicitly tell it
+
+==== Type constraints
+- Using iformattable as the base and inherit a generic type from it?
+- By using inheritance, you can make the methods on the base class useable
+
+==== Default and typeof operators
+. default = default for type
+- Reference types - null reference
+- non-nullable types - all zeroes (0, 0.0, false, UTF-16 numeral 0)
+- Nullable value types = null
+. typeOf = 
+- no generics involved (typeof(string))
+- generics involved but not type params (typeof(list<int>))
+- type param (typeof(T)) = closed constructed type
+- Type param in operand (typeof(List<TItem>))
+- no type param (typeof(List<>))
+- Lots of methods and properties in type
+- typeof(T) has same result as typeof(string)
+
+==== Generic type initialization and state
+- If you don't have a static type contructor, there are fewer timer guerentees
+- different generic types are independent on init
+
+=== Nullable Value Types
+
+
+=== Simplified Delegate Creation
+
+=== Iterators
+
+=== Minor Features
