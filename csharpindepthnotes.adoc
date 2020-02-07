@@ -120,7 +120,15 @@
 - eval first, if result non-null that's result, evaluate second and use as result
 
 === Simplified Delegate Creation
-
+. Method group conversions
+- Method group is implicitly convertable to a delegate type
+. Anonymous methods
+- lambda expressions
+- Better than method group conversions for creating a delegate instance
+- Delegate instance wihtout real method
+- Create delegate that calls with params
+. Delegate compatibility
+-  I have no idea what's happening here. 
 === Iterators
 
 === Minor Features
