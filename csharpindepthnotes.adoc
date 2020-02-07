@@ -94,7 +94,30 @@
 - different generic types are independent on init
 
 === Nullable Value Types
-
+. If null reference exceptions are bad? Why do we have more nullable value types?
+. Aim: Expressing an absence of information
+- Having a model that also indicates absences
+- C# used decimal.MaxValue or a boolean if it needed to be absent
+- And that was bad
+- Now we can encapsulate to be safer on a check
+. CLR and framework suport: the nullable<T> struct
+- Allows T to be any value type except other nullable<T>
+- Implicit conversion from T to nullable<T>
+- Value : value of the nullable type if it had value, and hasValue: boolean on if the value exists
+- Boxed values: HasValue is false, null refernece, HasValue tur - reference to object boxed T
+. Language support
+- ? type suffix: makes the value type the nullable<T> struct
+- Null literal: make hasValue false
+- Conversions: propgate nulls appropriately is lifting
+- Explict conversions can be done no matter the type
+- Lifted Operators: true and false are never lifted, only operators with non-nullable value types are lifted, unary and binary operators return type has to be non-nullable original operator, return type original operator must be bool
+- & and | have other behaviors
+- Operand types become their nullable equivalents
+- Nullable logic: true/false/null, check the truth table on page 47
+- Two null values are considered equal to each other
+- AS operator and nullable value types: helps with conversion safety (but is slow)
+- Null-coalescing operator ??: first ?? second
+- eval first, if result non-null that's result, evaluate second and use as result
 
 === Simplified Delegate Creation
 
