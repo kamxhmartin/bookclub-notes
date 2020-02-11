@@ -104,7 +104,7 @@
 - Allows T to be any value type except other nullable<T>
 - Implicit conversion from T to nullable<T>
 - Value : value of the nullable type if it had value, and hasValue: boolean on if the value exists
-- Boxed values: HasValue is false, null refernece, HasValue tur - reference to object boxed T
+- Boxed values: HasValue is false, null refernece, HasValue tur - reference to object boxed T (casting value type to a type)
 . Language support
 - ? type suffix: makes the value type the nullable<T> struct
 - Null literal: make hasValue false
@@ -128,8 +128,13 @@
 - Delegate instance wihtout real method
 - Create delegate that calls with params
 . Delegate compatibility
--  I have no idea what's happening here. 
+- I have no idea what's happening here. 
+- Implicit casting between params
+- Int64 -> Int32 data loss (int32 -> int64 is fine)
+- Reciever type 
 
 === Iterators
 
 === Minor Features
+
+== Chapter 3: LINQ and everything else
