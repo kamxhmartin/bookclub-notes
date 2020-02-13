@@ -135,6 +135,54 @@
 
 === Iterators
 
+==== Intro
+- A method or property implemented with an iterator block
+- Block of code using yield return
+- IEnumerable / IEnumerable<T>
+- IEnumberator / IEnumberator<T>
+- Yield type can be provided or it's ```object```
+- Allows for looping over value sets
+
+==== Laxy Execution
+- Execute code only when you need the value
+- IEnumberable can iterate without changing state (book)
+- IEmuerator does mutate state (bookmark)
+
+==== Eval of yield
+- Exceptions
+- End of method
+- Yield break
+- Eval of value for return yield
+
+==== Importance of being lazy
+- ?
+
+==== Eval of finally blocks
+. What happens?
+- If execution is paused in a yield return, it's inside try block and doesn't execute finally
+- If returns MoveNext() then exit block to the finally
+. The answer is 1
+. Lazy eval works
+. Breaking out of the foreach loop will hit the finally block?
+
+==== Importance of finally handling
+- If you don't call dispose on an itorator it could be leaky
+
+==== Implementation sketch
+- The compiler does a lot, but iterators have been taken over by linq so I guess that's fine. 
+
 === Minor Features
+
+==== Partial types
+
+==== Static classes
+
+==== SEparate getter/setter access
+
+==== Pragma directives
+
+==== Fixed-size buggers
+
+==== InternalsVisibleTo
 
 == Chapter 3: LINQ and everything else
