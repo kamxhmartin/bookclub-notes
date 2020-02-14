@@ -174,15 +174,35 @@
 === Minor Features
 
 ==== Partial types
+- Usually handled by code generators
+- Different parts can have different interfaces
+- Partial methods and implicitly private and can have hooks for extra behavior
+- But aren't included if never used
+- Might help with testing
 
 ==== Static classes
+- No instance methods, properties, events or constructors
+- Signals intent
 
-==== SEparate getter/setter access
+==== Separate getter/setter access
+- Improves encapsulation
+- I'm realizing I have no idea what a getter and setter do? I know we need them, but whyyyy?
+
+==== Namespace alias
+- Helps remove ambiguity
+- Use ::
+- Sometimes it's easier to use when dealing with Datetime implementations
 
 ==== Pragma directives
+- Give extra information to the compilier
+- Can turn errors into warnings intead of blowing up compilier?
 
-==== Fixed-size buggers
+==== Fixed-size buffers
+- Can only be used in unsafe code and withint struct using ```fixed```
 
 ==== InternalsVisibleTo
+- Assembly level attribute with single param with other assembly
+- Allowing test assembly access to internal members for easier testing
+- Tools can access internal members to avoid code duplication
 
 == Chapter 3: LINQ and everything else
