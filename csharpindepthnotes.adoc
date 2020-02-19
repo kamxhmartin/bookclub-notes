@@ -64,8 +64,8 @@
 - Finalizers
 
 ==== Type inference for type arguments to methods
-- Tuples allow type inference to be used where stype arguments have to be explicit
-- Type inference intersects with iheritance, conversions, option params
+- Tuples allow type inference to be used where type arguments have to be explicit
+- Type inference intersects with inheritance, conversions, option params
 - Sometimes it works perfectly
 - Sometimes you need to create a new generic to make it work
 - If it fails at compile time sometimes you can fix it with a cast
@@ -90,7 +90,7 @@
 - typeof(T) has same result as typeof(string)
 
 ==== Generic type initialization and state
-- If you don't have a static type contructor, there are fewer timer guerentees
+- If you don't have a static type constructor, there are fewer timer guarantees
 - different generic types are independent on init
 
 === Nullable Value Types
@@ -100,16 +100,16 @@
 - C# used decimal.MaxValue or a boolean if it needed to be absent
 - And that was bad
 - Now we can encapsulate to be safer on a check
-. CLR and framework suport: the nullable<T> struct
+. CLR and framework support: the nullable<T> struct
 - Allows T to be any value type except other nullable<T>
 - Implicit conversion from T to nullable<T>
 - Value : value of the nullable type if it had value, and hasValue: boolean on if the value exists
-- Boxed values: HasValue is false, null refernece, HasValue tur - reference to object boxed T (casting value type to a type)
+- Boxed values: HasValue is false, null reference, HasValue tur - reference to object boxed T (casting value type to a type)
 . Language support
 - ? type suffix: makes the value type the nullable<T> struct
 - Null literal: make hasValue false
-- Conversions: propgate nulls appropriately is lifting
-- Explict conversions can be done no matter the type
+- Conversions: propagate nulls appropriately is lifting
+- Explicit conversions can be done no matter the type
 - Lifted Operators: true and false are never lifted, only operators with non-nullable value types are lifted, unary and binary operators return type has to be non-nullable original operator, return type original operator must be bool
 - & and | have other behaviors
 - Operand types become their nullable equivalents
@@ -121,17 +121,17 @@
 
 === Simplified Delegate Creation
 . Method group conversions
-- Method group is implicitly convertable to a delegate type
+- Method group is implicitly convertible to a delegate type
 . Anonymous methods
 - lambda expressions
 - Better than method group conversions for creating a delegate instance
-- Delegate instance wihtout real method
+- Delegate instance without real method
 - Create delegate that calls with params
 . Delegate compatibility
 - I have no idea what's happening here. 
 - Implicit casting between params
 - Int64 -> Int32 data loss (int32 -> int64 is fine)
-- Reciever type 
+- Receiver type 
 
 === Iterators
 
@@ -139,14 +139,14 @@
 - A method or property implemented with an iterator block
 - Block of code using yield return
 - IEnumerable / IEnumerable<T>
-- IEnumberator / IEnumberator<T>
+- IEnumerator / IEnumerator<T>
 - Yield type can be provided or it's ```object```
 - Allows for looping over value sets
 
 ==== Laxy Execution
 - Execute code only when you need the value
-- IEnumberable can iterate without changing state (book)
-- IEmuerator does mutate state (bookmark)
+- IEnumerable can iterate without changing state (book)
+- IEnumerator does mutate state (bookmark)
 
 ==== Eval of yield
 - Exceptions
@@ -156,6 +156,8 @@
 
 ==== Importance of being lazy
 - ?
+- If the cost of the for loop is expensive, lazy eval is much better
+- Unwrapped for loops are costly 
 
 ==== Eval of finally blocks
 . What happens?
@@ -166,7 +168,7 @@
 . Breaking out of the foreach loop will hit the finally block?
 
 ==== Importance of finally handling
-- If you don't call dispose on an itorator it could be leaky
+- If you don't call dispose on an iterator it could be leaky
 
 ==== Implementation sketch
 - The compiler does a lot, but iterators have been taken over by linq so I guess that's fine. 
@@ -183,10 +185,13 @@
 ==== Static classes
 - No instance methods, properties, events or constructors
 - Signals intent
+- Shouldn't be able to instantiate classes
 
 ==== Separate getter/setter access
 - Improves encapsulation
 - I'm realizing I have no idea what a getter and setter do? I know we need them, but whyyyy?
+- Behind the scenes makes private fields on the assignment
+- Can't be accessed directly except from the class
 
 ==== Namespace alias
 - Helps remove ambiguity
@@ -194,11 +199,11 @@
 - Sometimes it's easier to use when dealing with Datetime implementations
 
 ==== Pragma directives
-- Give extra information to the compilier
-- Can turn errors into warnings intead of blowing up compilier?
+- Give extra information to the compiler
+- Can turn errors into warnings instead of blowing up compiler?
 
 ==== Fixed-size buffers
-- Can only be used in unsafe code and withint struct using ```fixed```
+- Can only be used in unsafe code and within struct using ```fixed```
 
 ==== InternalsVisibleTo
 - Assembly level attribute with single param with other assembly
@@ -206,3 +211,94 @@
 - Tools can access internal members to avoid code duplication
 
 == Chapter 3: LINQ and everything else
+
+=== Automatically Implemented properties
+- It's easier to set properties because of the automatic getters and setters (which we talked about last bookclub)
+- Reduces boiler plate code
+
+=== Implicit Typing
+
+==== Typing Terminology
+. Static and Dynamic Typing
+- Statically typed usually are in compiled languages
+- Dynamically typed leave everything to execution
+- Binding happens at compile time
+. Explicit and Implicit typing
+- Explicit - source code specifies all the types involved
+- Implicit - dev leaves out types from code, either compiler or execution determines the type
+- C# is explicitly typed mostly
+
+==== Implicitly typed local variables
+- var
+- Type inferred by compiler
+- Explicit declaration is feasible and readable
+- Type cant be named is anon
+- Type of variable has long name can be inferred by human
+- Can make declaration easier
+
+==== Implicitly typed arrays
+- Find candidate types
+- Check whether every array element has implicit conversion to type
+- One type left is inferred element type
+
+=== Object collection and initializers
+- Easy to create new objects
+
+==== Intro to object and collection init
+- Add constructors to initialize properties
+- You don't always control the code for the classes being used
+- Object and collection make create and populate objects easier
+
+==== Object init
+- Can only be used as part of constructor
+- Specify arguments
+- Says how to init each of the properties it mentions
+
+==== Collection init
+- Comma separated list in brackets
+- Part of constructor
+- .Add() method can add to collection
+- Use bracket syntax for creation
+
+==== Benefits of single expression init
+. Init new objects in single expression can:
+- simplify field initalizers
+- method arguments
+- operands ?:
+. Allows more concise code to create instance and populate
+
+=== Anon types
+
+==== Syntax and basic behavior
+
+==== Compiler-generated type
+
+==== Limitations
+
+=== Lambda Expressions
+
+==== Expression syntax
+
+==== Capturing variables
+
+==== Expression trees
+
+=== Extension Methods
+
+==== Declarating extentension methods
+
+==== Invoking extension method
+
+==== Chaining method calls
+
+=== Query Expressions
+
+==== Translate from c# to c#
+
+==== Range variables and transparent identifiers
+
+==== Deciding when to use with syntx for LINQ
+
+=== LINQ
+
+
