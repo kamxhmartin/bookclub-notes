@@ -262,43 +262,95 @@
 
 ==== Benefits of single expression init
 . Init new objects in single expression can:
-- simplify field initalizers
+- simplify field initializers
 - method arguments
 - operands ?:
 . Allows more concise code to create instance and populate
 
 === Anon types
+- Allow building objects that in a static way without declaration
 
 ==== Syntax and basic behavior
+- Using var because type has no name
+- Still statically typed
+
+- Use when the shape of the data doesn't matter outside of the scope
+- Projection initializer allows for anon type to be created
+- Reduces duplication of code
 
 ==== Compiler-generated type
+- It's a class
+- Its based of the ```object```
+- It's sealed
+- Props are read only
+- Constructor props have same names as props
+- It overrides gethashcode() and equals()
+- It overrides GetString() to list prop names and values
+- Type is generic with one type param per prop
+- If two anon objects have some prop names, they are probably going to be two objects of same type
 
 ==== Limitations
+- Localization : don't use an anon type across methods
+- NO ENCAPSULATION
+- It's awkward to use with a framework like MVC         
 
 === Lambda Expressions
+- Makes code more concise
+- From lambda calculus
 
 ==== Expression syntax
+- ```param-list => body```
+- Has exactly one param
 
 ==== Capturing variables
+- Compiler converts the lambda to a method somewhere
+- Declared outside of the lambda context
+- No variables captured = create static method
+- If variables captured in instance fields, instance method is created
+- If local variables or params are captured, private nested class is created
 
 ==== Expression trees
+- Code as data
+- String representation is constructed from expression tree   
 
 === Extension Methods
+- Simplest transformations of c# compiler
 
-==== Declarating extentension methods
+==== Declaring extension methods
+- ```this``` keyword
 
 ==== Invoking extension method
+- Compiler will want the regular method over the extension
+- Works from deepest namespace to the global
+- Extensions can be called on null values
 
 ==== Chaining method calls
+- Lazy streaming-where-possible
+- Calls methods in a sequence
+- Order of operations
 
 === Query Expressions
+- Translated to nonquery for the compiler and compiled as normal
 
 ==== Translate from c# to c#
+- Syntatic translation that happens before overload resolution or binding
+- Language has no specific expectations on the calls to extension methods
 
 ==== Range variables and transparent identifiers
+- Initial from clause has the range variable
+- ```let``` intros the variables
+- Transparent identifier is a variable you don't see it when the query is written
 
-==== Deciding when to use with syntx for LINQ
+==== Deciding when to use with syntax for LINQ
+- From -> select -> group
+- Method syntax, dot syntax, fluent syntax, lambda syntax
+- Do what feels right?
 
 === LINQ
-
+- Anonymous types
+- Implicit typing in var
+- Query expressions
+- Lambda expressions
+- Expression trees
+- Makes it easier to sort stuff
 
