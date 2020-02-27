@@ -354,3 +354,104 @@
 - Expression trees
 - Makes it easier to sort stuff
 
+== Chapter 4:   Improving interoperability
+
+=== Dynamic Typing
+- Looks simple, but is actually not
+
+==== Intro
+- looking up the meaning of a name in a certain content is binding
+- There is no system.type
+- implicit conversion from nonpointer type to dynamic
+- implicit conversion from expression from type dynamic to nonpointer type
+- expressions that involve a value type dynamic bound at execution
+- value type dynamic has compile time type dynamic
+- Only dynamic values are considered dynamically
+
+==== Dynamic behavior beyond reflection
+. Imaginary Example of Database Access
+- database class responds to books in a table called same and returns an object
+- search by author would searchby on author column, generate SQL
+- each row would respond to a title property by returning title
+- ORM this is entity framework
+- Is entity framework just dynamics?!
+. ExpandoObject
+. Dynamic view of JSON.net
+- Handling json with a library is like ajobject, jarray, jproprty
+- use LINQ on it, it works?
+- Nested objects
+. Implementing dynamic behavior
+- Its complicated
+- Represents the dynamic binding and binding logic of an object participating in the dynamic binding
+- create a class from dynamicmetaobject and override?
+- invoking any method prints message to console
+- fetching property returns property name 
+
+==== Look behind the scenes
+. who what?
+- c# compiler: implicit typing
+- clr
+- framework libraries: implementation of LINQ to use
+. IL generated for dynamic typing
+- Lots of call sites are involved
+- cache within call site improve performance
+
+==== Limitations and suprises
+- A type can't specify that it implements an interface using dynamic anywhere in a type argument
+- you cant' use dynamic anywhere in type constraints
+- Can specify a base class that uses dynamic in type argument
+- You can use dynamic interface type arugment for var
+. Extension methods
+- execution time binder doesn't resolve
+. Anon function
+- can't be assigned to variable of type dynamic
+- cast it to an intermediate static type
+- lambda expressions can't appear dynamically
+- converted lambdas can't contain dynamic operations
+. Anon types
+- treated as regular classes
+- read props of instance of anon types, but only if code has access to generated class
+. explict interface implementation
+- execution time binder uses execution time type
+
+==== Usage suggestions
+- Static typing makes errors show up earlier
+
+=== Operational parameters and named arguments
+
+==== Parameters with default values and arguments with names
+- default value for param
+- optional
+- argument without name == positional argument
+- default must be compile-time constraint
+
+==== Determining the meaning of a method call
+- positional before named
+- named arguments match name
+- param can have only one arg
+- every required param must have arg with value
+- optional params are permitted without arg
+
+==== Impact on versioning
+. Param name changes are breaking
+. default values changes are at least surpising
+. adding overloads is fiddly
+. 
+
+=== COM interoperability improvements
+
+==== Linking primary interop assemblies
+
+==== Optional parameters in COM
+
+==== Named indexers
+
+=== Generic variance
+
+==== Simple examples in action
+
+==== Syntax for variance
+
+==== Restrictions
+
+==== In practice
