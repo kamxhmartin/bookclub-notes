@@ -371,13 +371,13 @@
 ==== Dynamic behavior beyond reflection
 . Imaginary Example of Database Access
 - database class responds to books in a table called same and returns an object
-- search by author would searchby on author column, generate SQL
+- search by author would search by on author column, generate SQL
 - each row would respond to a title property by returning title
 - ORM this is entity framework
 - Is entity framework just dynamics?!
 . ExpandoObject
 . Dynamic view of JSON.net
-- Handling json with a library is like ajobject, jarray, jproprty
+- Handling json with a library is like a jobject, jarray, jproperty
 - use LINQ on it, it works?
 - Nested objects
 . Implementing dynamic behavior
@@ -396,11 +396,11 @@
 - Lots of call sites are involved
 - cache within call site improve performance
 
-==== Limitations and suprises
+==== Limitations and surprises
 - A type can't specify that it implements an interface using dynamic anywhere in a type argument
 - you cant' use dynamic anywhere in type constraints
 - Can specify a base class that uses dynamic in type argument
-- You can use dynamic interface type arugment for var
+- You can use dynamic interface type argument for var
 . Extension methods
 - execution time binder doesn't resolve
 . Anon function
@@ -411,7 +411,7 @@
 . Anon types
 - treated as regular classes
 - read props of instance of anon types, but only if code has access to generated class
-. explict interface implementation
+. explicit interface implementation
 - execution time binder uses execution time type
 
 ==== Usage suggestions
@@ -439,19 +439,42 @@
 . 
 
 === COM interoperability improvements
+- Component interoperability improvements
+- Cross language interoperability 
 
 ==== Linking primary interop assemblies
+- Primary interop assembly
+- type library importer tool
+- link vs reference
+- When PIA is linked - dynamic instead of object
+- I have no idea
 
 ==== Optional parameters in COM
+- (Most) everything is a ref parameter
+- I have less idea than before
 
 ==== Named indexers
+- Indexers are usually never named in source code
 
 === Generic variance
 
 ==== Simple examples in action
+- Is any list of strings a list of objects? NOPE
+- Covariance occurs when values are returned only as output
+- Contravariance occurs when values are accepted only as input
+- Invariance occurs when values are used as input and output
 
 ==== Syntax for variance
+- Classes and structs cannot be covariant
+- type param with out is covariant
+- type param with in is contravariant
+- type param with no mod is invariant
 
 ==== Restrictions
+- Not inherited by class
+- Conversion with variance => variance conversion
+- an example of reference conversion
+- only changes at compile time
 
 ==== In practice
+- 
